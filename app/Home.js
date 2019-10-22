@@ -1,10 +1,38 @@
 //import needed libraries
 import React, { Component } from 'react'; //pour cree les component
-import { View, StyleSheet } from 'react-native'; // output componenet (text,button,view...)
-import Button from './common/Button'
-//creation Componenet (class base componenet)
+import {
+    View, Text, StyleSheet, FlatList, TouchableOpacity,
+    RefreshControl
+} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+// import { connect } from 'react-redux';
 
+// import { ListItem, Spinner } from './common';
+// import { Button } from './common'
+
+//creation Componenet (class base componenet)
 class Home extends Component { //component pour l'acceuil
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state;
+        const headerRight = (
+            <TouchableOpacity
+                onPress={params.logout}>
+                <Text>logout</Text>
+            </TouchableOpacity>
+        );
+
+        return { headerRight };
+    };
+
+    componentDidMount() {
+        this.props.navigation.setParams({ logout: this._logout.bind(this) });
+    }
+
+    _logout() {
+        console.log("logout");
+        AsyncStorage.removeItem('app_token');
+        this.props.navigation.navigate('Login');
+    }
 
     _onLoginPressed() { // function pressed
         this.props.navigation.navigate('Login');
@@ -14,16 +42,12 @@ class Home extends Component { //component pour l'acceuil
     //function main in the component
     render() {
         return (
-            <View style={styles.view}>
-                <Button onPress={this._onLoginPressed.bind(this)}>
-                    Login
-                </Button>
-            </View>
+            <Text>
+                Home
+            </Text>
         );
     }
 }
-
-
 
 //Style in the componenet
 const styles = StyleSheet.create({

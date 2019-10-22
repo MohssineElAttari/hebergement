@@ -1,11 +1,18 @@
 //import needed liberries
 
 import React, { Component } from 'react';//pour cree les component
-import { Text, View } from 'react-native';// output componenet (text,button,view...)
+import { Text, label, StyleSheet } from 'react-native';// output componenet (text,button,view...)
 import { Button, CardItem, Card, Input, Spinner } from './common';
 import { connect } from 'react-redux';
 import { loginUser } from './actions';
 //la creation du Componenet (class base componenet)
+const styles = StyleSheet.create({
+    errorStyle: {
+        fontSize: 17,
+        alignSelf: 'center',
+        color: 'red'
+    }
+});
 class LoginForm extends Component {//component pour le login
 
     constructor() {
@@ -14,6 +21,11 @@ class LoginForm extends Component {//component pour le login
             username: '',
             password: '',
         };
+    }
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.user) {
+            this.props.navigation.navigate('Home');
+        }
     }
     _onLoginPressed() {
         // console.log(`username is : ${this.state.username} and password is : ${this.state.password}`);
@@ -49,8 +61,10 @@ class LoginForm extends Component {//component pour le login
                 </CardItem>
                 <CardItem>
                     {this._renderButton()}
+                    <Text> </Text>
+                    <Button>Inscription</Button>
                 </CardItem>
-                <Text>incription</Text>
+                <Text style={styles.errorStyle}>{this.props.error}</Text>
             </Card>
         );
     }

@@ -5,32 +5,53 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Home from './Home';
 import LoginForm from './LoginForm';
+import Splash from './Splash';
+
 const RootNavigator = createStackNavigator({
-    Login: {
-        screen: LoginForm,
-        navigationOptions : () => ({
-            title: 'Login',
-            headerTitleStyle: { // style header
-                textAlign: 'center',
-                flexGrow:1, // wheith
-                alignSelf:'center',
-                fontWeight: 'bold'
+    Splash: {
+        screen: Splash,
+        navigationOptions: {
+            header: false,
+            tabBarVisible: false,
+            headerStyle: {
+                backgroundColor: 'rgb(42, 55, 68)',
             },
-        }),
+        }
+    }, Login: {
+        screen: LoginForm,
+        navigationOptions: {
+            title: 'Login',
+            headerTitleStyle: {
+                fontSize: 18,
+                textAlign: "center",
+                flex: 1,
+            },
+            tabBarVisible: false,
+            headerStyle: {
+                backgroundColor: '#4A94FB',
+                borderBottomColor: 'transparent',
+            },
+            headerTintColor: 'white',
+            headerBackTitle: null,
+        },
     },
     Home: {
         screen: Home,
-        navigationOptions :{
-            title: 'Home', // title header
-
-            // // header: null, //  hide header
-
-            headerTitleStyle: { // style header
-                textAlign: 'center',
-                flexGrow:1, // wheith
-                alignSelf:'center',
-                fontWeight: 'bold'
+        navigationOptions: {
+            title: 'Home',
+            headerLeft: null,
+            headerTitleStyle: {
+                fontSize: 18,
+                textAlign: "center",
+                flex: 1,
             },
+            tabBarVisible: false,
+            headerStyle: {
+                backgroundColor: '#4A94FB',
+                borderBottomColor: 'transparent',
+            },
+            headerTintColor: 'white',
+            headerBackTitle: null,
         },
     }
 });
