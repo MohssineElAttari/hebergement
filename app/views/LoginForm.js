@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';//pour cree les component
 import { Text, label, StyleSheet } from 'react-native';// output componenet (text,button,view...)
-import { Button, CardItem, Card, Input, Spinner } from './common';
+import { Button, CardItem, Card, Input, Spinner } from '../common';
 import { connect } from 'react-redux';
-import { loginUser } from './actions';
-//la creation du Componenet (class base componenet)
+import { loginUser } from '../actions';
+
 const styles = StyleSheet.create({
     errorStyle: {
         fontSize: 17,
@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
         color: 'red'
     }
 });
+//la creation du Componenet (class base componenet)
+
 class LoginForm extends Component {//component pour le login
 
     constructor() {
@@ -24,7 +26,7 @@ class LoginForm extends Component {//component pour le login
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.user) {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Screen');
         }
     }
     _onLoginPressed() {

@@ -27,7 +27,7 @@ class Splash extends Component {
     AsyncStorage.getItem('app_token')
       .then(token => {
         if (token) {
-          this._navigate('Home');
+          this._navigate('Screen');
         } else {
           this._navigate('Login');
         }
@@ -45,7 +45,7 @@ class Splash extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('./res/aa.png')} style={styles.image} />
+        <Image source={require('../res/heberger.png')} style={styles.image} />
         <ActivityIndicator size={'small'} />
         <Text style={styles.loadingText}>Loading ...</Text>
       </View>

@@ -4,6 +4,7 @@ import {
     LOGIN_FAILED
 }
     from './types';
+import { API_URLS } from '../config/api.url.config';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
@@ -39,7 +40,7 @@ export const loginUser = ({ username, password }) => {
 
         //Call the back-end API
         //Please do not spam/abuse it so others can use it as well.
-        axios.post('http://192.168.91.2/serveurHebergement/api/hebergement/login.php',
+        axios.post(API_URLS.LOGIN_URL,
             { email: username, password })
             .then(resp => handleResponse(dispatch, resp.data))
             .catch(error => console.error(error));
