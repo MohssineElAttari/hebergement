@@ -43,7 +43,12 @@ const Screen = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => <FeatherIcon name='alert-circle' color={tintColor} />
       }
     }, SignOut: {
-      screen: logOut,
+
+      screen: (props) => {
+        AsyncStorage.removeItem('app_token');
+        props.navigation.navigate('Login');
+        return (true);
+      },
       navigationOptions: {
         title: "SignOut",
         drawerIcon: ({ tintColor }) => <FeatherIcon name='log-out' color={tintColor} />

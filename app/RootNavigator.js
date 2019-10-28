@@ -7,27 +7,15 @@ import Screen from './Screen';
 // import Home from '';
 import LoginForm from './views/LoginForm';
 import Splash from './views/Splash';
-
+import LoginView from './views/LoginView';
 const RootNavigator = createStackNavigator({
-    Screen: {
-        screen: Screen,
-        // headerMode: 'none',
+    LoginView: {
+        screen: LoginView,
         navigationOptions: {
-            // headerVisible: false,
             header: null
         }
     },
-    Splash: {
-        screen: Splash,
-        navigationOptions: {
-            // header: false,
-            // tabBarVisible: false,
-            // headerStyle: {
-            //     backgroundColor: 'rgb(42, 55, 68)',
-            // },
-            header: null
-        }
-    }, Login: {
+    Login: {
         screen: LoginForm,
         navigationOptions: {
             title: 'Login',
@@ -45,7 +33,18 @@ const RootNavigator = createStackNavigator({
             headerTintColor: 'white',
             headerBackTitle: null,
         },
+    }, Splash: {
+        screen: Splash,
+        navigationOptions: {
+            // header: false,
+            // tabBarVisible: false,
+            // headerStyle: {
+            //     backgroundColor: 'rgb(42, 55, 68)',
+            // },
+            header: null
+        }
     },
+
     Screen: {
         screen: Screen,
         // headerMode: 'none',
