@@ -5,8 +5,82 @@ import logo from '../res/login.png';
 // import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { bold } from 'ansi-colors';
-const { width: WIDTH } = Dimensions.get('window')
+const { width: WIDTH } = Dimensions.get('window');
+const { height: HEIGHT } = Dimensions.get('window');
 
+const styles = StyleSheet.create({
+    backgroungContainer: {
+        height:HEIGHT,
+        flex: 1,
+        alignItems: 'center',
+        width: null,
+        justifyContent:'center',
+
+    },
+    logoContainer: {
+        marginTop: 20,
+        alignItems: 'center',
+        marginBottom: 30,
+        height:HEIGHT-500
+
+    },
+    logo: {
+        width: 80,
+        height: 80,
+    },
+    logoText: {
+        color: '#000',
+        fontSize: 20,
+        fontWeight: '500',
+        marginTop: 10,
+        fontWeight: 'bold'
+    },
+    TextInput: {
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        color: 'rgba(255,255,255,0.35)',
+        fontSize: 16,
+        width: WIDTH - 55,
+        height: 45,
+        borderRadius: 25,
+        paddingLeft: 35,
+        marginHorizontal: 25,
+    },
+    inputIcon: {
+        position: "absolute",
+        top: 8,
+        left: 35
+    },
+    inputContainer: {
+        marginTop: 10,
+        justifyContent:'center',
+        
+    },
+    btnEye: {
+        position: "absolute",
+        top: 8,
+        right: 37
+    }, btnLogin: {
+        backgroundColor: '#010228',
+        width: WIDTH - 55,
+        height: 45,
+        borderRadius: 25,
+        justifyContent: "center",
+        marginTop: 20,
+    },
+    text: {
+        textAlign: 'center',
+        color: 'rgba(255,255,255,0.35)',
+        fontSize: 16,
+    },
+    authContainer: {
+        marginTop: 30,
+        flex: 1,
+        flexDirection: "row"
+    },
+    btnAuth: {
+        fontWeight: 'bold'
+    }
+});
 export default class LoginView extends Component {
     constructor() {
         super()
@@ -63,70 +137,3 @@ export default class LoginView extends Component {
             </ImageBackground>)
     }
 }
-const styles = StyleSheet.create({
-    backgroungContainer: {
-        flex: 1,
-        alignItems: 'center',
-        width: null,
-        height: null
-    },
-    logoContainer: {
-        marginTop: 20,
-        alignItems: 'center',
-        marginBottom: 30,
-    },
-    logo: {
-        width: 80,
-        height: 80,
-    },
-    logoText: {
-        color: '#000',
-        fontSize: 20,
-        fontWeight: '500',
-        marginTop: 10,
-        fontWeight: 'bold'
-    },
-    TextInput: {
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        color: 'rgba(255,255,255,0.35)',
-        fontSize: 16,
-        width: WIDTH - 55,
-        height: 45,
-        borderRadius: 25,
-        paddingLeft: 35,
-        marginHorizontal: 25,
-    },
-    inputIcon: {
-        position: "absolute",
-        top: 8,
-        left: 35
-    },
-    inputContainer: {
-        marginTop: 10
-    },
-    btnEye: {
-        position: "absolute",
-        top: 8,
-        right: 37
-    }, btnLogin: {
-        backgroundColor: '#010228',
-        width: WIDTH - 55,
-        height: 45,
-        borderRadius: 25,
-        justifyContent: "center",
-        marginTop: 20,
-    },
-    text: {
-        textAlign: 'center',
-        color: 'rgba(255,255,255,0.35)',
-        fontSize: 16,
-    },
-    authContainer: {
-        marginTop: 30,
-        flex: 1,
-        flexDirection: "row"
-    },
-    btnAuth: {
-        fontWeight: 'bold'
-    }
-});

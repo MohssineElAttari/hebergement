@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
 const onLoginSuccess = (dispatch, user) => {
-    AsyncStorage.setItem('app_token', user)
+    AsyncStorage.setItem('app_token', JSON.stringify(user))
         .then(() => {
             dispatch({ type: LOGIN_SUCCESS, user })
         });

@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderBottomWidth: 0,
     shadowColor: '#000',
-    shadowOpacity: 0.1
+    shadowOpacity: 0.1,
+    backgroundColor:"#5e35b1"
   }
 });
 

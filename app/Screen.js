@@ -10,8 +10,8 @@ import SideBar from "./screen/SideBar";
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const logOut = (props) =>
-  props.navigation.navigate('Login');
+// const logOut = (props) =>
+//   props.navigation.navigate('Login');
 
 const Screen = createDrawerNavigator(
   {
