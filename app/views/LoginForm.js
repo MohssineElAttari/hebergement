@@ -8,7 +8,6 @@ import { loginUser } from '../actions';
 import bgImage from '../res/juskteez.jpg';
 import logoSrc from '../res/login.png';
 import Icon from 'react-native-vector-icons/Ionicons'
-import { bold } from 'ansi-colors';
 const { width: WIDTH } = Dimensions.get('window');
 const { height: HEIGHT } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -95,7 +94,7 @@ class LoginForm extends Component {//component pour le login
                 </InputStyle>
                 {this._renderButton()}
                 <Text style={styles.errorStyle}>{this.props.error}</Text>
-                <TextLogin onPress={() => this.props.navigation.navigate('Inscription')} />
+                <TextLogin onPress={() => this.props.navigation.navigate('InscriptionForm')} />
             </BackgroundScreen>
         );
     }

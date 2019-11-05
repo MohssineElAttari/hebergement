@@ -7,7 +7,7 @@ import Screen from './Screen';
 // import Home from '';
 import LoginForm from './views/LoginForm';
 import Splash from './views/Splash';
-import Inscription from './views/Inscription'
+import InscriptionForm from './views/InscriptionForm'
 // import LoginView from './views/LoginView';
 const RootNavigator = createStackNavigator({
     // Splash: {
@@ -40,8 +40,8 @@ const RootNavigator = createStackNavigator({
             headerBackTitle: null,
         },
     },
-    Inscription: {
-        screen: Inscription,
+    InscriptionForm: {
+        screen: InscriptionForm,
         // headerMode: 'none',
         navigationOptions: {
             // headerVisible: false,

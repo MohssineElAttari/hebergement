@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { BackgroundScreen, InputStyle, Logo, ButtonLogin } from '../common';
+import { BackgroundScreen, InputStyle, Spinner, Logo, ButtonLogin } from '../common';
 import { inscriptionUser } from '../actions';
 import bgImage from '../res/background.jpg';
 import logoSrc from '../res/boss.png';
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Inscription extends Component {
+class InscriptionForm extends Component {
     constructor() {
         super();
         this.state = {
@@ -39,30 +39,40 @@ class Inscription extends Component {
             press: false,
         }
     }
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.etat) {
+            this.props.navigation.navigate('Login');
+        }
+    }
     _onInscriptionPressed() {
-        // console.log(`codeHebergement is : ${this.state.codeEbergement} , nom is : ${this.state.nom} , paye is : ${this.state.paye} , ville is : ${this.state.ville} , adress is : ${this.state.adress} , adressMap is : ${this.state.adressMap} , responsable is : ${this.state.responsable} , description is : ${this.state.description} , logo is : ${this.state.logo} , telephon is : ${this.state.telephon} , email is : ${this.state.email} , password is : ${this.state.password} `);
+        console.log(`etat : ${this.props.etat} , loading et : ${this.props.loading}`);
         const { codeHebergement, nom, paye, ville, adress, adressMap, responsable, description, logo, telephon, email, password } = this.state;
         this.props.inscriptionUser({ codeHebergement, nom, paye, ville, adress, adressMap, responsable, description, logo, telephon, email, password });
 
     }
     _renderButton() {
-        // if (this.props.loading) {
-        //     return <Spinner />;
-        // }
+        if (this.props.loading) {
+            return <Spinner />;
+        }
         return (
             <ButtonLogin onPress={this._onInscriptionPressed.bind(this)}>Inscription</ButtonLogin>
         );
     }
     showPass = () => {
         if (this.state.press == false) {
+            console.log("1 -press est : " + this.state.press + " show : " + this.state.showPass);
             this.setState({
                 showPass: false, press: true,
             })
         }
-        else
+        else {
+            console.log("2 - press est : " + this.state.press + " show : " + this.state.showPass);
+
             this.setState({
                 showPass: true, press: false,
             })
+        }
+
     }
     render() {
         return (
@@ -173,6 +183,7 @@ class Inscription extends Component {
                         </InputStyle>
 
                     </ScrollView>
+                    <Text style={styles.errorStyle}>{this.props.error}</Text>
                     {this._renderButton()}
                 </BackgroundScreen>
 
@@ -183,10 +194,10 @@ class Inscription extends Component {
 
 const mapStateToProps = state => {
     return {
-        error: state.auth.error,
-        loading: state.auth.loading,
-        user: state.auth.user
+        error: state.insc.error,
+        loading: state.insc.loading,
+        etat: state.insc.etat
     }
 }
 
-export default connect(mapStateToProps, { inscriptionUser })(Inscription);
+export default connect(mapStateToProps, { inscriptionUser })(InscriptionForm);
