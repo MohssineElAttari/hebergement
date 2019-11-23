@@ -22,6 +22,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
 });
+function logo(props){
+    return (
+        <View style={styles.logoContainer}>
+            <Image source={props.src} style={styles.logo}></Image>
+            <Text style={styles.logoText}>{props.label}</Text>
+        </View>
+    ); 
+}
 const Logo = (props) => {
     return (
         <View style={styles.logoContainer}>

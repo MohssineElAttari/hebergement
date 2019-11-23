@@ -70,7 +70,7 @@ class LoginForm extends Component {//component pour le login
     render() {
         return (
             <BackgroundScreen src={bgImage}>
-                <Logo src={logoSrc} label="Login" />
+                <Logo src={logoSrc} label="Login test" />
                 <InputStyle
                     name='ios-person'
                     size={28}

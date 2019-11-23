@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import { Text, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { BackgroundScreen, InputStyle, Spinner, Logo, ButtonLogin } from '../common';
 import { inscriptionUser } from '../actions';
 import bgImage from '../res/background.jpg';
 import logoSrc from '../res/boss.png';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons'
+import ImagePicker from 'react-native-image-picker';
+const options = {
+    title: 'Select Avatar',
+    takePhotoButtonTitle: 'Take Photo',
+    chooseFromLibraryButtonTitle: 'choose From gallery',
+    quality: 1,
+
+};
+
 const styles = StyleSheet.create({
     errorStyle: {
         fontSize: 17,
@@ -17,6 +26,27 @@ const styles = StyleSheet.create({
         top: 8,
         right: 37
     },
+    text: {
+        fontSize: 18,
+        color: 'white',
+        textAlign: 'center'
+    },
+    button: {
+        width: 250,
+        height: 50,
+        backgroundColor: '#330066',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+        borderRadius: 25,
+    },
+    image: {
+        height: 200,
+        width: 200,
+        marginTop: 10,
+        justifyContent: 'center',
+        alignSelf: 'center'
+    }
 });
 
 class InscriptionForm extends Component {
@@ -37,22 +67,61 @@ class InscriptionForm extends Component {
             password: '',
             showPass: true,
             press: false,
+            imageSource: null,
+            data: null,
+            type: null,
         }
+        this.ImageURI = 'http://192.168.91.2/serveurHebergement/api/hebergement/uploads/images/Hebergement.png';
+
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.etat) {
+            console.log(`etat : ${this.props.etat} , loading et : ${this.props.loading}`);
             this.props.navigation.navigate('Login');
         }
     }
+    selectPhoto() {
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else {
+                const source = { uri: response.uri };
+                this.setState({
+                    imageSource: source,
+                    logo: response.data,
+                    type: response.type
+                });
+            }
+        });
+    }
+
+    // uploadPhoto() {
+    //     RNFetchBlob.fetch('POST', 'http://192.168.91.2/serveurHebergement/api/hebergement/inscription.php', {
+    //         Authorization: "Bearer access-token",
+    //         otherHeader: "foo",
+    //         'Content-Type': 'multipart/form-data',
+    //     }, [
+    //         // custom content type
+    //         { name: 'image', filename: 'image.png', type: 'image/png', data: this.state.logo },
+    //     ]).then((resp) => {
+    //         console.log(resp)
+    //     }).catch((err) => {
+    //         // ...
+    //     })
+    // }
     _onInscriptionPressed() {
         console.log(`etat : ${this.props.etat} , loading et : ${this.props.loading}`);
-        const { codeHebergement, nom, paye, ville, adress, adressMap, responsable, description, logo, telephon, email, password } = this.state;
-        this.props.inscriptionUser({ codeHebergement, nom, paye, ville, adress, adressMap, responsable, description, logo, telephon, email, password });
-
+        const { codeHebergement, nom, paye, ville, adress, adressMap, responsable, description, logo, type, telephon, email, password } = this.state;
+        this.props.inscriptionUser({ codeHebergement, nom, paye, ville, adress, adressMap, responsable, description, logo, type, telephon, email, password });
     }
     _renderButton() {
         if (this.props.loading) {
             return <Spinner />;
+            
         }
         return (
             <ButtonLogin onPress={this._onInscriptionPressed.bind(this)}>Inscription</ButtonLogin>
@@ -144,6 +213,7 @@ class InscriptionForm extends Component {
                             placeholderTextColor='rgba(255,255,255,0.8)'
                             onChangeText={(description) => this.setState({ description })}
                         />
+                        {/*                         
                         <InputStyle
                             name='ios-image'
                             size={28}
@@ -152,6 +222,13 @@ class InscriptionForm extends Component {
                             placeholderTextColor='rgba(255,255,255,0.8)'
                             onChangeText={(logo) => this.setState({ logo })}
                         />
+ */}
+                        <Image style={styles.image}
+                            source={this.state.imageSource != null ? this.state.imageSource :
+                                { uri: this.ImageURI }} />
+                        <TouchableOpacity style={styles.button} onPress={this.selectPhoto.bind(this)}>
+                            <Text style={styles.text}>Select</Text>
+                        </TouchableOpacity>
                         <InputStyle
                             name='ios-call'
                             size={28}
