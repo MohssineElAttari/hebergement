@@ -4,26 +4,27 @@ import { Text, View, StyleSheet, ImageBackground, Image, Dimensions, TouchableOp
 import Icon from 'react-native-vector-icons/Ionicons'
 const styles = StyleSheet.create({
     TextInput: {
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        color: 'rgba(255,255,255,0.35)',
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        color: 'rgb(255,255,255)',
         fontSize: 16,
         width: WIDTH - 55,
         height: 45,
         borderRadius: 25,
         paddingLeft: 40,
         marginHorizontal: 25,
-        alignItems:'center'
+        alignItems: 'center',
+       
     },
     inputIcon: {
         position: "absolute",
         top: 8,
         left: 35,
-        
+
     },
     inputContainer: {
         marginTop: 10,
         justifyContent: 'center',
-        
+
 
     }
 });
