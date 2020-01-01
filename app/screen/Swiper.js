@@ -5,6 +5,7 @@ import {
   ScrollView,       // Handles navigation between screens
   StyleSheet,       // CSS-like styles
   View,             // Container component
+
 } from 'react-native';
 import Button from './Button';
 
@@ -12,7 +13,6 @@ import Button from './Button';
 const { width, height } = Dimensions.get('window');
 
 export default class OnboardingScreens extends Component {
-
   // Props for ScrollView component
   static defaultProps = {
     // Arrange screens horizontally
@@ -173,6 +173,7 @@ export default class OnboardingScreens extends Component {
    * @param {array} slides to swipe through
    */
   renderScrollView = pages => {
+    // this.scrollEnabled = false
     return (
       <ScrollView ref={component => { this.scrollView = component; }}
         {...this.props}
@@ -180,6 +181,7 @@ export default class OnboardingScreens extends Component {
         onScrollBeginDrag={this.onScrollBegin}
         onMomentumScrollEnd={this.onScrollEnd}
         onScrollEndDrag={this.onScrollEndDrag}
+        scrollEnabled={false}
       >
         {pages.map((page, i) =>
           // Render each slide inside a View
@@ -224,21 +226,154 @@ export default class OnboardingScreens extends Component {
   }
 
   /**
-   * Render Continue or Done button
-   */
-  renderButton = () => {
+     * 
+     */
+
+  activer() {
     const lastScreen = this.state.index === this.state.total - 1;
     return (
       <View pointerEvents="box-none" style={[styles.buttonWrapper, styles.fullScreen]}>
         {lastScreen
           // Show this button on the last screen
           // TODO: Add a handler that would send a user to your app after onboarding is complete
-          ? <Button text="Start Now" onPress={() => console.log('Send me to the app')} />
+          ? null
           // Or this one otherwise
           : <Button text="Continue" onPress={() => this.swipe()} />
         }
       </View>
     );
+  }
+  /**
+   * 
+   */
+  desactiver() {
+    const lastScreen = this.state.index === this.state.total - 1;
+    return (
+      <View pointerEvents="box-none" style={[styles.buttonWrapper, styles.fullScreen, { opacity: 0.2 }]} >
+        {lastScreen
+          ? null
+          : <Button text="Continue" disabled={true} />
+        }
+      </View>
+    );
+  }
+
+  /**
+   * Render Continue or Done button
+   */
+  // scrollEnabled = () => {
+  //   this.setState({ scrollEnabled: false });
+  // }
+  renderButton = () => {
+    console.log("scrollEnabled :" + this.scrollEnabled)
+
+    console.log("index : " + this.state.index)
+
+    if (this.state.index == 0) {
+      console.log("nombreScreens : " + this.props.children[0].props.nombreScreens)
+      let cmp = 0
+      for (var i = 0; i <= 3; i++) {
+        if (this.props.nombreErrors[i] == false) {
+          cmp--
+        } else {
+          cmp++
+        }
+      }
+      console.log("cmp :" + cmp)
+      if (cmp < 4) {
+        { this.scrollEnabled = false }
+        console.log("scrollEnabled :" + this.scrollEnabled)
+
+        return (this.desactiver())
+      }
+      else {
+        { this.scrollEnabled = true }
+        console.log("scrollEnabled :" + this.scrollEnabled)
+
+        return (this.activer())
+      }
+    } else if (this.state.index == 1) {
+      console.log("nombreScreens : " + this.props.children[1].props.nombreScreens)
+      let cmp = 0
+      for (var i = 4; i <= 5; i++) {
+        if (this.props.nombreErrors[i] == false) {
+          cmp--
+        } else {
+          cmp++
+        }
+
+        console.log("cmp :" + cmp)
+      }
+      if (cmp < 2) {
+        { this.scrollEnabled = false }
+
+        return (this.desactiver())
+      }
+      else {
+        { this.scrollEnabled = true }
+
+        return (this.activer())
+      }
+    }
+    else if (this.state.index == 2) {
+      console.log("nombreScreens : " + this.props.children[2].props.nombreScreens)
+      let cmp = 0
+      for (var i = 6; i <= 7; i++) {
+        { this.scrollEnabled = false }
+        if (this.props.nombreErrors[i] == false) {
+          cmp--
+        } else {
+          cmp++
+        }
+
+      }
+      console.log("cmp :" + cmp)
+      if (cmp < 2) {
+        { this.scrollEnabled = true }
+        return (this.desactiver())
+      }
+      else {
+        return (this.activer())
+      }
+    }
+    else if (this.state.index == 3) {
+      console.log("nombreScreens : " + this.props.children[3].props.nombreScreens)
+      let cmp = 0
+      if (this.props.nombreErrors[8] == false) {
+        cmp--
+      } else {
+        cmp++
+      }
+      console.log("cmp :" + cmp)
+      if (cmp < 1) {
+        { this.scrollEnabled = false }
+        return (this.desactiver())
+      }
+      else {
+        { this.scrollEnabled = true }
+        return (this.activer())
+      }
+    }
+    else if (this.state.index == 4) {
+      console.log("nombreScreens : " + this.props.children[4].props.nombreScreens)
+      let cmp = 0
+      for (var i = 9; i <= 10; i++) {
+        if (this.props.nombreErrors[i] == false) {
+          cmp--
+        } else {
+          cmp++
+        }
+      }
+      console.log("cmp :" + cmp)
+      if (cmp < 3) {
+        { this.scrollEnabled = false }
+        return (this.desactiver())
+      }
+      else {
+        { this.scrollEnabled = true }
+        return (this.activer())
+      }
+    }
   }
 
   /**

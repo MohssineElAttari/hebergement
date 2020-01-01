@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         paddingLeft: 40,
         marginHorizontal: 25,
         alignItems: 'center',
-       
+
     },
     inputIcon: {
         position: "absolute",
@@ -39,7 +39,17 @@ const InputStyle = (props) => {
                 placeholderTextColor={props.placeholderTextColor}
                 style={styles.TextInput}
                 secureTextEntry={props.secureTextEntry}
-                onChangeText={props.onChangeText} />
+                onChangeText={props.onChangeText}
+                // onSelectionChange={props.onSelectionChange}
+                // onFocus={props.onFocus}
+                // onBlur={props.onBlur}
+                // onKeyPress={props.onKeyPress}
+                // pointerEvents={props.pointerEvents}
+                // autoCorrect={props.autoCorrect}
+                autoFocus={props.autoFocus}
+                // onSubmitEditing={props.onSubmitEditing}
+                // ref={props.ref}
+            />
             {props.children}
         </View>
     );

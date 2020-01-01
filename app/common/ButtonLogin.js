@@ -4,7 +4,7 @@ const { width: WIDTH } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   btnLogin: {
-    backgroundColor: '#010228',
+    backgroundColor: '#13679C',
     width: WIDTH - 55,
     height: 45,
     borderRadius: 25,
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    color: 'rgba(255,255,255,0.35)',
+    color: 'rgb(255,255,255)',
     fontSize: 16,
   },
 });
