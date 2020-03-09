@@ -14,50 +14,9 @@ import bgImage from '../res/background.jpg';
 import logoSrc from '../res/boss.png';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
-// Validate.js validates your values as an object
-import validate from 'validate.js'
-
-// const constraints = {
-//   email: {
-//     presence: {
-//       message: "Cannot be blank."
-//     },
-//     email: {
-//       message: 'Please enter a valid email address'
-//     }
-//   },
-//   password: {
-//     presence: {
-//       message: "Cannot be blank."
-//     },
-//     length: {
-//       minimum: 5,
-//       message: 'Your password must be at least 5 characters'
-//     }
-//   }
-// }
-
-// const validator = (field, value) => {
-//   // Creates an object based on the field name and field value
-//   // e.g. let object = {email: 'email@example.com'}
-//   let object = {}
-//   object[field] = value
-
-//   let constraint = constraints[field]
-//   console.log(object, constraint)
-
-//   // Validate against the constraint and hold the error messages
-//   const result = validate(object, { [field]: constraint })
-//   console.log(object, constraint, result)
-
-//   // If there is an error message, return it!
-//   if (result) {
-//     // Return only the field error message if there are multiple
-//     return result[field][0]
-//   }
-
-//   return null
-// }
+import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
+// import validate from 'validate.js'
 
 const options = {
     title: 'Select Avatar',

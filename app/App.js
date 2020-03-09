@@ -11,10 +11,9 @@ import Screens from './screen/Screens';
 class App extends Component {
     render() {
         return (
-            // <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
-            //     <RootNavigator />
-            // </Provider>
-            <Screens />
+            <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+                <RootNavigator />
+            </Provider>
         );
     }
 }

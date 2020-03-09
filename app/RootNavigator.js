@@ -10,17 +10,24 @@ import Splash from './views/Splash';
 import InscriptionForm from './views/InscriptionForm'
 // import LoginView from './views/LoginView';
 const RootNavigator = createStackNavigator({
-    // Splash: {
-    //     screen: Splash,
-    //     navigationOptions: {
-    //         // header: false,
-    //         // tabBarVisible: false,
-    //         // headerStyle: {
-    //         //     backgroundColor: 'rgb(42, 55, 68)',
-    //         // },
-    //         header: null
-    //     }
-    // },
+    InscriptionForm: {
+        screen: InscriptionForm,
+        // headerMode: 'none',
+        navigationOptions: {
+            // headerVisible: false,
+            header: null
+        }
+    }, Splash: {
+        screen: Splash,
+        navigationOptions: {
+            // header: false,
+            // tabBarVisible: false,
+            // headerStyle: {
+            //     backgroundColor: 'rgb(42, 55, 68)',
+            // },
+            header: null
+        }
+    },
     Login: {
         screen: LoginForm,
         navigationOptions: {
@@ -40,14 +47,7 @@ const RootNavigator = createStackNavigator({
             headerBackTitle: null,
         },
     },
-    InscriptionForm: {
-        screen: InscriptionForm,
-        // headerMode: 'none',
-        navigationOptions: {
-            // headerVisible: false,
-            header: null
-        }
-    },
+
     Screen: {
         screen: Screen,
         // headerMode: 'none',
